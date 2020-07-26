@@ -1,0 +1,15 @@
+{"level":"INFO","time":"2020-07-24T16:56:17.730+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T16:56:40.673+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T16:57:50.217+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T16:58:09.963+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T16:58:19.797+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T18:36:50.462+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-24T18:38:29.115+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"DEBUG","time":"2020-07-24T18:38:53.354+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
+{"level":"INFO","time":"2020-07-24T18:40:48.463+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"DEBUG","time":"2020-07-24T18:41:05.202+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
+{"level":"DEBUG","time":"2020-07-24T18:43:27.455+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
+{"level":"DEBUG","time":"2020-07-24T18:44:06.258+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
+{"level":"DEBUG","time":"2020-07-24T18:44:13.801+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
+{"level":"INFO","time":"2020-07-24T18:45:58.153+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"DEBUG","time":"2020-07-24T18:46:09.502+0800","caller":"controllers/login.go:24","msg":"login success","login success":"handd"}
