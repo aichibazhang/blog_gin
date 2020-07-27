@@ -33,7 +33,7 @@ func GenHomeBlocks(articleList []*Article, isLogin bool) (ret []HomeBlockParam) 
 			IsLogin: isLogin,
 		}
 		homeParam.Tags = createTagsLinks(art.Tags)
-		homeParam.Link = "/show/" + strconv.Itoa(art.Id)
+		homeParam.Link = "/article/show/" + strconv.Itoa(art.Id)
 		homeParam.UpdateLink = "/article/update?id=" + strconv.Itoa(art.Id)
 		homeParam.DeleteLink = "/article/delete?id=" + strconv.Itoa(art.Id)
 		ret = append(ret, homeParam)

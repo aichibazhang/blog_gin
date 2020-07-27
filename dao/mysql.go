@@ -27,6 +27,10 @@ func InitMySQL(cfg *config.MySQLConfig) (err error) {
 	if err != nil {
 		return
 	}
+	err = CreateTableWithAlbum() // 创建文章表
+	if err != nil {
+		return
+	}
 	return
 }
 
@@ -41,6 +45,19 @@ func CreateTableWithUser() (err error) {
         );`
 
 	_, err = ModifyDB(sqlStr)
+	return
+}
+
+//创建图片数据库
+func CreateTableWithAlbum() (err error){
+	sql := `create table if not exists album(
+ id int(4) primary key auto_increment not null,
+ filepath varchar(255),
+ filename varchar(64),
+ status int(4),
+ createtime int(10)
+ );`
+	_, err = ModifyDB(sql)
 	return
 }
 

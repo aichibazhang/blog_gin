@@ -16,11 +16,17 @@ func HomeGet(c *gin.Context) {
 		page = 1
 	}
 	var artList []*models.Article
-	artList, _ = models.FindArticleWithPage(page)
+	var homeFooterCode models.HomeFooterPage
+	tag := c.Query("tag")
+	if len(tag) > 0 {
+		artList, _ = models.QueryArticlesWithTag(page, tag)
+	} else {
+		artList, _ = models.FindArticleWithPage(page)
+	}
+	homeFooterCode = models.ConfigHomeFooterPageCode(page)
 	fmt.Println("当前用户是否登录:", isLogin)
 	data := models.GenHomeBlocks(artList, isLogin)
-	homeFooterCode := models.ConfigHomeFooterPageCode(page)
-	c.HTML(http.StatusOK, "home.html", gin.H{"isLogin": isLogin, "data": data,"pageData": homeFooterCode})
+	c.HTML(http.StatusOK, "home.html", gin.H{"isLogin": isLogin, "data": data, "pageData": homeFooterCode})
 }
 func GetSession(c *gin.Context) bool {
 	session := sessions.Default(c)

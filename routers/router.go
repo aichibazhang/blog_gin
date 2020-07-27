@@ -36,10 +36,17 @@ func InitRouter() *gin.Engine {
 	{
 		oauthGroup := router.Group("/", middlewares.BasicAuth())
 		oauthGroup.GET("/", controllers.HomeGet)
+		oauthGroup.GET("/album",controllers.AlbumGet)
+		oauthGroup.POST("/upload",controllers.AlbumPost)
 		v1 := oauthGroup.Group("/article")
 		{
 			v1.GET("/add", controllers.AddArticleGet)
 			v1.POST("/add", controllers.AddArticlePost)
+			v1.GET("/show/:id", controllers.GetArticleInfo)
+			v1.GET("/update", controllers.UpdateArticleGet)
+			v1.POST("/update", controllers.UpdateArticlePost)
+			v1.GET("/delete",controllers.DeleteArticle)
+			v1.GET("/tags",controllers.GetTags)
 		}
 	}
 
