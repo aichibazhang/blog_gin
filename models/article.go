@@ -4,6 +4,7 @@ import (
 	"blogweb_gin/dao"
 	logger "blogweb_gin/gb"
 	"fmt"
+	sql "github.com/jmoiron/sqlx"
 	"go.uber.org/zap"
 )
 
@@ -87,4 +88,13 @@ func QueryArticlesWithTag(pageNum int, tag string) ([]*Article, error) {
 	sql += " or tags like '" + tag + "'"
 	sql = fmt.Sprintf("select * from article %s", sql)
 	return queryArticleWithCon(pageNum, sql)
+}
+func QueryArticleByIds(ids []int64) (articles []*Article, err error) {
+	query, args, err := sql.In("select id, title from article where id in (?)", ids)
+	if err != nil {
+		logger.Error("QueryArticlesByIds", zap.Any("error", err))
+		return nil, err
+	}
+	err = dao.QueryRows(&articles, query, args...)
+	return
 }

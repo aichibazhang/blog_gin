@@ -16,6 +16,10 @@ func main() {
 		return
 	}
 	if err:=dao.InitMySQL(config.Conf.MySQLConfig);err!=nil{
+		fmt.Printf("init mysql failed, err:%v\n", err)
+		return
+	}
+	if err:= dao.InitRedis(config.Conf.RedisConfig);err!=nil{
 		fmt.Printf("init redis failed, err:%v\n", err)
 		return
 	}

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"blogweb_gin/dao"
 	logger "blogweb_gin/gb"
 	"blogweb_gin/models"
 	"blogweb_gin/utils"
@@ -56,8 +57,34 @@ func GetArticleInfo(c *gin.Context) {
 	fmt.Printf("用户获取文章id为:%d\n", id)
 	article, _ := models.GetArticleById(id)
 	logger.Debug("获取文章详情", zap.Any("article:", article))
+	if err := dao.AddArticleCount(id); err != nil {
+		logger.Error("redis 增加失败", zap.Any("redis error", err))
+	}
 	c.HTML(http.StatusOK, "show_article.html",
 		gin.H{"isLogin": isLogin, "Title": article.Title, "Content": utils.SwitchMarkdownToHtml(article.Content)})
+}
+func TopGet(c *gin.Context) {
+	id := c.Param("n")
+	n, err := strconv.ParseInt(id, 0, 64)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 2001, "msg": "无效的参数"})
+		return
+	}
+	ids, err := dao.ArticleTopN(n)
+	if err != nil {
+		logger.Error("ArticleTopN", zap.Any("error", err))
+		c.JSON(http.StatusOK, gin.H{"code": 2001, "msg": "无效的参数"})
+		return
+	}
+	articleList, err := models.QueryArticleByIds(ids)
+	if err != nil {
+		logger.Error("ArticleTopN", zap.Any("error", err))
+		c.JSON(http.StatusOK, gin.H{"code": 2001, "msg": "服务繁忙，请稍后再试"})
+		return
+	}
+	logger.Debug("ArticleTopN", zap.Any("articleList", articleList))
+	c.JSON(http.StatusOK, gin.H{"code": 2000, "msg": "success", "data": articleList})
+	return
 }
 func UpdateArticleGet(c *gin.Context) {
 	isLogin := c.MustGet("isLogin")
@@ -104,7 +131,7 @@ func DeleteArticle(c *gin.Context) {
 	idStr := c.Query("id")
 	_, err := models.DeleteArticle(idStr)
 	if err != nil {
-		logger.Error("删除文章失败",zap.Any("error",err))
+		logger.Error("删除文章失败", zap.Any("error", err))
 	}
 
 	c.Redirect(http.StatusFound, "/")

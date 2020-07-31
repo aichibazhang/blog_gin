@@ -1,0 +1,5 @@
+{"level":"INFO","time":"2020-07-29T18:42:08.666+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-29T18:43:48.214+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-29T18:44:09.323+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-29T18:44:21.663+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}
+{"level":"INFO","time":"2020-07-29T18:44:43.293+0800","caller":"dao/mysql.go:14","msg":"InitMySql..."}

@@ -32,6 +32,7 @@ func InitRouter() *gin.Engine {
 		router.GET("/login", controllers.Login)
 		router.POST("/login", controllers.LoginPost)
 		router.GET("/exit", controllers.ExitGet)
+		router.GET("/top/:n",controllers.TopGet)
 	}
 	{
 		oauthGroup := router.Group("/", middlewares.BasicAuth())
